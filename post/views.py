@@ -1,7 +1,7 @@
 from django import views
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
 from django.views import View
 from django.db import IntegrityError
 
@@ -62,3 +62,10 @@ class PostUpdateViews(View):
                 return redirect(to='new_post')
         messages.error(request,'Algo a salido mal, por intenta nuevamente')
         return redirect(to='new_post')
+
+class PostDeleteView(DeleteView):
+    model=models.Post
+    success_url='/'
+    def post(self,request):
+        messages.success(request,'post eliminada con exito')
+    

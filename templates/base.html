@@ -60,9 +60,8 @@
     <script src="{% static 'js/jquery-3.2.1.slim.min.js'%}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-            {% if messages %}
-            {% for m in messages %}
-                
+        {% if messages.succes %}
+          {% for m in messages %}
                 <script>
                     Swal.fire({
                         'title':'Felicitaciones',
@@ -71,7 +70,19 @@
                     })
                     console.log('{{m}}')
                 </script>
-            {% endfor %}
+          {% endfor %}
+        {% endif %}
+        {% if message.error %}
+          {% for m in messages %}
+                <script>
+                    Swal.fire({
+                        'title':'Lo sentimos',
+                        'text':'{{m}}',
+                        'icon':'error',
+                    })
+                    console.log('{{m}}')
+                </script>
+          {% endfor %}
         {% endif %}
 
     {% block js %}{% endblock js %}

@@ -35,7 +35,7 @@ class Comment(models.Model):
 
 class Post(models.Model):
     title=models.CharField(max_length=100)
-    slug=models.SlugField(max_length=125)
+    slug=models.SlugField(max_length=125,unique=True)
     content=models.TextField()
     author=models.ForeignKey(User, on_delete=models.CASCADE)
     category=models.ForeignKey(Category, on_delete=models.CASCADE,blank=True,null=True)
